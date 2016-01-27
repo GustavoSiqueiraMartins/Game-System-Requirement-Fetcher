@@ -83,7 +83,7 @@ IIT Guwahati
 		while ($it < $hrefspage->length) {
 			$hrefpage = $hrefspage->item($it);
 			$linktitle = $hrefpage->getAttribute('title');
-			$vv=strpos($linktitle,"Gaming CPU Can play");$vv--;
+			$vv=strpos($linktitle,"Gaming GPU Can play");$vv--;
 			if($vv==true) {echo '<strong><font color="red">NVIDIA GPU: </font></strong>'.substr($linktitle,0,$vv).'<br>';break;}
 			$it++;
 		}
@@ -91,7 +91,7 @@ IIT Guwahati
 		while ($it < $hrefspage->length) {
 			$hrefpage = $hrefspage->item($it);
 			$linktitle = $hrefpage->getAttribute('title');
-			$vv=strpos($linktitle,"Gaming CPU Can play");$vv--;
+			$vv=strpos($linktitle,"Gaming GPU Can play");$vv--;
 			if($vv==true) {echo '<strong><font color="red">AMD GPU:</font> </strong>'.substr($linktitle,0,$vv).'<br>';break;}
 			$it++;
 		}
