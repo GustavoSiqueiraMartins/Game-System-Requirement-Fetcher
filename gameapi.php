@@ -31,6 +31,11 @@ IIT Guwahati
 			'request_fulluri' => true,
 			'header' => "Proxy-Authorization: Basic $auth",
 		    ),
+		   /* ADD THIS CODE IF YOU GET SSL ERROR
+		   	"ssl"=>array(
+			"verify_peer"=>false,
+			"verify_peer_name"=>false,
+		    ),*/
 		);
 		$cxContext = stream_context_create($aContext);
 		$html= file_get_contents($url, False, $cxContext);
