@@ -60,7 +60,8 @@ IIT Guwahati
 			}	
 		}
 		if($position==-1) exit("game not found..sorry :(");
-		$gamepage=file_get_contents($reqlink, False, $cxContext);
+		$gamepage= file_get_contents($reqlink);
+		//$gamepage=file_get_contents($reqlink, False, $cxContext); IN CASE OF PROXY....REMOVE PREVIOUS LINE AND ADD THIS LINE
 		$dompage = new DOMDocument();
 		@$dompage->loadHTML($gamepage);
 		$xpathpage = new DOMXPath($dompage);
