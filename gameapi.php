@@ -20,6 +20,7 @@ IIT Guwahati
 	</form>
 	<?php
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		error_reporting(E_ALL ^ E_WARNING);
 		$name=$_POST["game_name"];
 		if($name=='') exit("enter a game name");
 		$query = $name.' system requirements';
