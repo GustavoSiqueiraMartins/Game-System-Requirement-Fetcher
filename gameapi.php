@@ -24,21 +24,27 @@ IIT Guwahati
 		if($name=='') exit("enter a game name");
 		$query = $name.' system requirements';
 		$url = "https://in.search.yahoo.com/search?p=".str_replace(' ', '+',$query)."&fr=yfp-t-100";
-		$auth = base64_encode('shivram.gowtham:GCvd5AU7');
-		$aContext = array(
-		    'http' => array(
-			'proxy' => 'tcp://202.141.80.24:3128',
-			'request_fulluri' => true,
-			'header' => "Proxy-Authorization: Basic $auth",
-		    ),
-		   /* ADD THIS CODE IF YOU GET SSL ERROR
-		   	"ssl"=>array(
-			"verify_peer"=>false,
-			"verify_peer_name"=>false,
-		    ),*/
-		);
-		$cxContext = stream_context_create($aContext);
-		$html= file_get_contents($url, False, $cxContext);
+		/*ADD THIS CODE IF YOUR NET IS PROXY-AUTHENTICATED
+			$auth = base64_encode('USERNAME:PASSWORD');//REMOVE IF AUTHENTICATION NOT REQUIRED
+			$aContext = array(
+			    	
+			    	'http' => array(
+				'proxy' => 'tcp://proxy:port',
+				'request_fulluri' => true,
+				'header' => "Proxy-Authorization: Basic $auth",//REMOVE IF AUTHENTICATION NOT REQUIRED
+			        ),
+				
+				// ADD THIS CODE IF YOU GET SSL ERROR
+				// 	"ssl"=>array(
+				//	"verify_peer"=>false,
+				//	"verify_peer_name"=>false,
+				//    ),
+			
+			);
+			$cxContext = stream_context_create($aContext);
+		*/
+		$html= file_get_contents($url);
+		//$html= file_get_contents($url, False, $cxContext); IN CASE OF PROXY....REMOVE PREVIOUS LINE AND ADD THIS LINE
 		$dom = new DOMDocument();
 		@$dom->loadHTML($html);
 		$xpath = new DOMXPath($dom);
