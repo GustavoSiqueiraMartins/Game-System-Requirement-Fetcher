@@ -1,7 +1,11 @@
 # Game-System-Requirement-Fetcher
+
 Name: Shivram N Gowtham
+
 Email: shivram.gowtham@iitg.ernet.in
+
 Project Name: Game system requirements fetcher
+
 Description:
 	
 	Language:php
