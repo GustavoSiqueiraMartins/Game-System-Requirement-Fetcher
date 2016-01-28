@@ -82,64 +82,90 @@ IIT Guwahati
 			$it++;	
 		}
 		if(!$data_present) exit("no data available on the game probably a very old one :(");
-		$it++;
+		$it++;$prev_pos=$it;
 		while ($it < $hrefspage->length) {
 			$hrefpage = $hrefspage->item($it);
 			$linktitle = $hrefpage->getAttribute('title');
 			$vv=strpos($linktitle,"Gaming CPU Can play");$vv--;
-			if($vv==true) {echo '<strong><font color="red">AMD CPU:</font></strong> '.substr($linktitle,0,$vv).'<br>';break;}
+			if($vv==true) {
+				echo '<strong><font color="red">AMD CPU:</font></strong> '.substr($linktitle,0,$vv).'<br>';
+				$prev_pos=$it+1;
+				break;
+			}
 			$it++;
 		}
-		$it++;
+		$it=$prev_pos;
 		while ($it < $hrefspage->length) {
 			$hrefpage = $hrefspage->item($it);
 			$linktitle = $hrefpage->getAttribute('title');
 			$vv=strpos($linktitle,"Gaming GPU Can play");$vv--;
-			if($vv==true) {echo '<strong><font color="red">NVIDIA GPU: </font></strong>'.substr($linktitle,0,$vv).'<br>';break;}
+			if($vv==true) {
+				echo '<strong><font color="red">NVIDIA GPU: </font></strong>'.substr($linktitle,0,$vv).'<br>';
+				$prev_pos=$it+1;
+				break;
+			}
 			$it++;
 		}
-			$it++;
+		$it=$prev_pos;
 		while ($it < $hrefspage->length) {
 			$hrefpage = $hrefspage->item($it);
 			$linktitle = $hrefpage->getAttribute('title');
 			$vv=strpos($linktitle,"Gaming GPU Can play");$vv--;
-			if($vv==true) {echo '<strong><font color="red">AMD GPU:</font> </strong>'.substr($linktitle,0,$vv).'<br>';break;}
+			if($vv==true) {
+				echo '<strong><font color="red">AMD GPU:</font> </strong>'.substr($linktitle,0,$vv).'<br>';
+				break;
+			}
 			$it++;
 		}
 		$spanspage = $xpathpage->evaluate("/html/body//span");
-		$it_span=0;
+		$it_span=0;$prev_pos=$it_span;
 		while ($it_span < $spanspage->length) {
 			$spanpage = $spanspage->item($it_span);
 			$spantitle = $spanpage->getAttribute('title');
 			$vv=strpos($spantitle,"RAM Requirement");
-			if($vv==true) {echo '<strong><font color="red">RAM: </font></strong>'.$spanpage->nodeValue.'<br>';break;}
+			if($vv==true) {
+				echo '<strong><font color="red">RAM: </font></strong>'.$spanpage->nodeValue.'<br>';
+				$prev_pos=$it_span;+1;
+				break;
+			}
 			$it_span++;	
 		}
-	
-		$it_span++;
-		while ($it_span < $spanspage->length) {
-			$spanpage = $spanspage->item($it_span);
-			$spantitle = $spanpage->getAttribute('title');
-			$vv=strpos($spantitle,"Direct X Requirement");
-			if($vv==true) {echo '<strong><font color="red">DIRECT X:</font></strong> '.$spanpage->nodeValue.'<br>';break;}
-			$it_span++;
-		}
-		$it_span++;
-		while ($it_span < $spanspage->length) {
-			$spanpage = $spanspage->item($it_span);
-			$spantitle = $spanpage->getAttribute('title');
-			$vv=strpos($spantitle,"Hard Disk Drive Space Requirement");
-			if($vv==true) {echo '<strong><font color="red">HARD DISK SPACE:</font></strong> '.$spanpage->nodeValue.'<br>';break;}
-			$it_span++;
-		}
+		$it_span=$prev_pos;
 		while ($it_span < $spanspage->length) {
 			$spanpage = $spanspage->item($it_span);
 			$spantitle = $spanpage->getAttribute('title');
 			$vv=strpos($spantitle,"Operating System Requirement");
-			if($vv==true) {echo '<strong><font color="red">OS:</font> </strong>'.$spanpage->nodeValue.'<br>';break;}
+			if($vv==true) {
+				echo '<strong><font color="red">OS:</font> </strong>'.$spanpage->nodeValue.'<br>';
+				$prev_pos=$it_span;+1;
+				break;
+			}
 			$it_span++;
 		}
-		$it_span++;
+		$it_span=$prev_pos;
+		while ($it_span < $spanspage->length) {
+			$spanpage = $spanspage->item($it_span);
+			$spantitle = $spanpage->getAttribute('title');
+			$vv=strpos($spantitle,"Direct X Requirement");
+			if($vv==true) {
+				echo '<strong><font color="red">DIRECT X:</font></strong> '.$spanpage->nodeValue.'<br>';
+				$prev_pos=$it_span;+1;
+				break;
+			}
+			$it_span++;
+		}
+		$it_span=$prev_pos;
+		while ($it_span < $spanspage->length) {
+			$spanpage = $spanspage->item($it_span);
+			$spantitle = $spanpage->getAttribute('title');
+			$vv=strpos($spantitle,"Hard Disk Drive Space Requirement");
+			if($vv==true) {
+				echo '<strong><font color="red">HARD DISK SPACE:</font></strong> '.$spanpage->nodeValue.'<br>';
+				break;
+			}
+			$it_span++;
+		}
+		
 	}
 	?>
 </body>
